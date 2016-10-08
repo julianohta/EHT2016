@@ -1,29 +1,20 @@
+{% if session.logged_in %}
 {% extends "layout.html" %}
 {% block body %}
-<h4>Case Overview</h4>
-<div class="row">
-    <form class="col s12">
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">my_location</i>
-                <input id="event_location" type="text" class="validate">
-                <label for="event_location">Event Location</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">chat_bubble_outline</i>
-                <textarea id="event_desc" class="materialize-textarea"></textarea>
-                <label for="event_desc">Event Description</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">contacts</i>
-                <input id="event_reporter" type="text" class="validate">
-                <label for="event_reporter">Event Reporter</label>
-            </div>
-        </div>
+    <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
+      <dl>
+        <dt>Title:
+        <dd><input type=text size=30 name=title>
+        <dt>Text:
+        <dd><textarea name=text rows=5 cols=40></textarea>
+        <dd><input type=submit value=Share>
+      </dl>
     </form>
-</div>
+  <ul class=entries>
+  {% for entry in entries %}
+    <li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}
+    <li><em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+  </ul>
 {% endblock %}
+{% endif %}

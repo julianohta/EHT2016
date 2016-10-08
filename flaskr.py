@@ -64,13 +64,14 @@ def initdb_command():
 
 
 # display table
-@app.route('/entries')
+@app.route('/view')
 def show_entries():
+    if not session.get('logged_in'):
+        return render_template('login.html', error='Please login and try again')
     db = get_db()
     cur = db.execute('select title, text from entries order by id desc')
     entries = cur.fetchall()
-    return render_template('show_entries.html', entries=entries)
-
+    return render_template('view.html', entries=entries)
 
 # shows
 @app.route('/add', methods=['POST'])
@@ -85,7 +86,11 @@ def add_entry():
     return redirect(url_for('show_entries'))
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
+def index():
+    return redirect(url_for('login'))
+
+@app.route('/login' , methods=['GET', 'POST'])
 def login():
     error = None
     if request.method == 'POST':
@@ -97,11 +102,10 @@ def login():
             session['logged_in'] = True
             flash('You were logged in')
             # return redirect(url_for('show_entries'))
-    return render_template('index.html', error=error)
-
+    return render_template('login.html', error=error)
 
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
-    return render_template('index.html')
+    return redirect(url_for('login'))
