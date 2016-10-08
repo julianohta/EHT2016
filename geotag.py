@@ -58,5 +58,3 @@ def get_lat_lng(filename):
                 lng = 0 - lng
 
     return lat, lng
-
-print(get_lat_lng("blep.jpg"))
