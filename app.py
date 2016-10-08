@@ -7,7 +7,7 @@ app.config.update(
 
 @app.route('/')
 def index():
-    return 'ok'
+    return render_template('index.html')
 
 @app.route('/report')
 def report():
