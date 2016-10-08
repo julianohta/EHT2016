@@ -8,7 +8,7 @@
         <div class="row"><div class="input-field col s12">
             <style>#map{height:500px; width:500px;}</style>
             <i class="material-icons prefix">my_location</i>
-            <input id="location" type="text" class="validate" name="address">
+            <input id="location" type="text" class="validate" name="location">
             <label for="location">Event Location</label>
             <button class="btn waves-effect waves-light" type="submit">Search Address
                 <i class="material-icons right">send</i>
@@ -55,9 +55,17 @@
         <h4>Victims</h4>
         <div id="victims">
         </div>
+        <input id="victim_cnt" name="victim_cnt" type="hidden" value="0">
         <a class="add-victim waves-effect waves-light btn"><i class="material-icons right">queue</i>Add Victim Description</a>
         <h4>Suspected Persons</h4>
         <a class="add-suspect waves-effect waves-light btn"><i class="material-icons right">queue</i>Add Suspected Person</a>
+        <div class="row">
+            <div class="input-field col s12 center-align">
+                <button class="btn waves-effect waves-light" type="submit" name="action" value="report">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </div>
     </form>
 </div>
 {% endblock %}

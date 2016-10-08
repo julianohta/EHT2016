@@ -15,14 +15,14 @@ $(document).ready(function() {
         next += 1;
 
         var new_input = '<div class="card-panel white"><div class="row"><div class="input-field col s6">' +
-        					'<input id="victim[' + next + ']-name" type="text" class="validate" name="victim[' + next + ']-name">' +
+        					'<input type="text" class="validate" name="victim[' + next + ']-name">' +
             				'<label for="victim[' + next + ']-name">Name</label>' +
         				'</div><div class="input-field col s6">' +
-            				'<input id="victim[' + next + ']-alias" type="text" class="validate" name="victim[' + next + ']-alias">' +
+            				'<input type="text" class="validate" name="victim[' + next + ']-alias">' +
             				'<label for="victim[' + next + ']-alias">Aliases</label>' +
         				'</div></div>' +
         				'<div class="row"><div class="input-field col s6">' +
-        					'<select id="victim[' + next + ']-ethnicity" name="victim[' + next + ']-ethnicity">' +
+        					'<select name="victim[' + next + ']-ethnicity">' +
       							'<option value="" disabled selected>Select</option>' +
       							'<option value="white">White</option>' +
       							'<option value="latino">Hispanic/Latino</option>' +
@@ -33,7 +33,7 @@ $(document).ready(function() {
     						'</select>' +
     						'<label>Ethnicity</label>' +
         				'</div><div class="input-field col s6">' +
-        					'<select id="victim[' + next + ']-gender" name="victim[' + next + ']-gender">' +
+        					'<select name="victim[' + next + ']-gender">' +
       							'<option value="" disabled selected>Select</option>' +
       							'<option value="male">Male</option>' +
       							'<option value="female">Female</option>' +
@@ -41,41 +41,42 @@ $(document).ready(function() {
     						'<label>Gender</label>' +
         				'</div></div>' +
         				'<div class="row"><div class="input-field col s6">' +
-        					'<input id="victim[' + next + ']-age" type="text" class="validate" name="victim[' + next + ']-age">' +
+        					'<input type="text" class="validate" name="victim[' + next + ']-age">' +
             				'<label for="victim[' + next + ']-age">Age</label>' +
         				'</div><div class="input-field col s6">' +
-            				'<input id="victim[' + next + ']-eyes" type="text" class="validate" name="victim[' + next + ']-eyes">' +
+            				'<input type="text" class="validate" name="victim[' + next + ']-eyes">' +
             				'<label for="victim[' + next + ']-eyes">Eyes</label>' +
         				'</div></div>' +
         				'<div class="row"><div class="input-field col s6">' +
-        					'<input id="victim[' + next + ']-hair" type="text" class="validate" name="victim[' + next + ']-hair">' +
+        					'<input type="text" class="validate" name="victim[' + next + ']-hair">' +
             				'<label for="victim[' + next + ']-hair">Hair</label>' +
         				'</div><div class="input-field col s6">' +
-            				'<input id="victim[' + next + ']-build" type="text" class="validate" name="victim[' + next + ']-build">' +
+            				'<input type="text" class="validate" name="victim[' + next + ']-build">' +
             				'<label for="victim[' + next + ']-build">Build</label>' +
         				'</div></div>' +
         				'<div class="row"><div class="input-field col s6">' +
-        					'<input id="victim[' + next + ']-height" type="text" class="validate" name="victim[' + next + ']-height">' +
+        					'<input type="text" class="validate" name="victim[' + next + ']-height">' +
             				'<label for="victim[' + next + ']-height">Height</label>' +
         				'</div><div class="input-field col s6">' +
-            				'<input id="victim[' + next + ']-weight" type="text" class="validate" name="victim[' + next + ']-weight">' +
+            				'<input type="text" class="validate" name="victim[' + next + ']-weight">' +
             				'<label for="victim[' + next + ']-weight">Weight</label>' +
         				'</div></div>' +
         				'<div class="row"><div class="input-field col s6">' +
-        					'<input id="victim[' + next + ']-mods" type="text" class="validate" name="victim[' + next + ']-mods">' +
+        					'<input type="text" class="validate" name="victim[' + next + ']-mods">' +
             				'<label for="victim[' + next + ']-mods">Body Modifications</label>' +
         				'</div><div class="input-field col s6">' +
-            				'<input id="victim[' + next + ']-clothing" type="text" class="validate" name="victim[' + next + ']-clothing">' +
+            				'<input type="text" class="validate" name="victim[' + next + ']-clothing">' +
             				'<label for="victim[' + next + ']-clothing">Clothing</label>' +
         				'</div></div>' +
         				'<div class="row"><div class="input-field col s12">' +
-        					'<textarea id="victim[' + next + ']-comments" class="materialize-textarea"></textarea>' +
+        					'<textarea class="materialize-textarea"></textarea>' +
             				'<label for="victim[' + next + ']-comments">Other Comments</label>' +
         				'</div></div>' +
         				'<a class="remove-victim btn"><i class="material-icons right">delete</i>Remove Victim</a>' +
         				'</div>';
 
         $("#victims").append(new_input);
+       	$('#victim_cnt').val((parseInt($('#victim_cnt').val()) + 1).toString());
 
         $('select').material_select();
 
