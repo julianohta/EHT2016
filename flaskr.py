@@ -85,6 +85,21 @@ def add_entry():
     flash('New entry was successfully posted')
     return redirect(url_for('show_entries'))
 
+@app.route('/report', methods=["POST","GET"])
+def report():
+    # db = get_db()
+    # cur = db.execute('select title, text from entries order by id desc')
+    # entries = cur.fetchall()
+    #geoinfo = reportreq.getgeoinfo()
+    print("hello")
+    if request.method == 'POST':
+        addr = request.form["address"]
+        print(addr)
+        return render_template('report.html', lat=reportreq.getLat(addr), lng=reportreq.getLng(addr))
+    else:
+        return render_template('report.html')
+    #return render_template('report.html', lat=geoinfo["latitude"], lng=geoinfo["longitude"])
+    #addrInfo = reportreq.getAddrInfo(addr)
 
 @app.route('/')
 def index():

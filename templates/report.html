@@ -4,35 +4,58 @@
 <!-- Loop through  -->
 <div class="row">
     <form class="col s12" action = "/report" method = "POST">
-        <div class="row">
-            <div class="input-field col s12">
-                <style>#map{height:500px; width:500px;}</style>
-                <i class="material-icons prefix">my_location</i>
-                <input id="event_location" type="text" class="validate" name="address">
-                <label for="event_location">Event Location</label>
-                <button class="btn waves-effect waves-light" type="submit">Search Address
-                    <i class="material-icons right">send</i>
-                </button>
-                <!-- <div id="map"></div> -->
-                {% if lat %}
-                <script>
-                  var latlng = {lat: {{lat}}, lng: {{lng}}};
-                  function initMap() {
-                    var map = new google.maps.Map(document.getElementById('map'), {
-                      center: latlng,
-                      zoom: 15
-                    });
-                    var marker = new google.maps.Marker({
-                        position: latlng,
-                        map: map,
-                    });
-                }
-                </script>
-                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2l1Dg7y6sUMl98CSDudcuC28VLLlXFTk&callback=initMap"
-                    async defer></script>
-                {% endif %}
+        <h4>Event Overview</h4>
+        <div class="row"><div class="input-field col s12">
+            <style>#map{height:500px; width:500px;}</style>
+            <i class="material-icons prefix">my_location</i>
+            <input id="location" type="text" class="validate" name="address">
+            <label for="location">Event Location</label>
+            <button class="btn waves-effect waves-light" type="submit">Search Address
+                <i class="material-icons right">send</i>
+            </button>
+            <!-- <div id="map"></div> -->
+            {% if lat %}
+            <script>
+              var latlng = {lat: {{lat}}, lng: {{lng}}};
+              function initMap() {
+                var map = new google.maps.Map(document.getElementById('map'), {
+                  center: latlng,
+                  zoom: 15
+                });
+                var marker = new google.maps.Marker({
+                    position: latlng,
+                    map: map,
+                });
+            }
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2l1Dg7y6sUMl98CSDudcuC28VLLlXFTk&callback=initMap"
+                async defer></script>
+            {% endif %}
+        </div></div>
+        <div class="row"><div class="input-field col s6">
+            <input id="time" type="text" class="validate" name="time">
+            <label for="time">24-hour Time</label>
+        </div><div class="input-field col s6">
+            <input type="date" class="datepicker" name="date">
+            <label for="date">Date</label>
+        </div></div>
+        <div class="row"><div class="input-field col s6">
+            <input id="venue-name" type="text" class="validate" name="venue-name">
+            <label for="venue-name">Name of Venue</label>
+        </div><div class="input-field col s6">
+            <input id="venue-type" type="text" class="validate" name="venue-type">
+            <label for="venue-type">Type of Venue</label>
+        </div></div>
+        <h4>Victims</h4>
+        <div id="victims">
         </div>
-    </div>
-</form>
+        <a class="add-victim waves-effect waves-light btn"><i class="material-icons right">queue</i>Add Victim Description</a>
+        <h4>Suspected Persons</h4>
+        <a class="add-suspect waves-effect waves-light btn"><i class="material-icons right">queue</i>Add Suspected Person</a>
+    </form>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/report.js')}}"></script>
 {% endblock %}
