@@ -78,6 +78,7 @@ def add_entry():
     if not session.get('logged_in'):
         abort(401)
     db = get_db()
+
     db.execute('insert into entries (title, text) values (?, ?)',
                  [request.form['title'], request.form['text']])
     db.commit()
@@ -85,26 +86,90 @@ def add_entry():
     return redirect(url_for('show_entries'))
 
 
+@app.route('/register', methods=['GET', 'POST'])
+def add_user():
+    error = None
+    if request.method == 'POST':
+        db = get_db()
+
+        username = request.form['username']
+
+        user = db.execute('SELECT username, password FROM users WHERE username LIKE \'%s\'' % username)
+
+        row = user.fetchall()
+
+        if (row is None) | (len(row) == 0):
+            db.execute('insert into users (username, password) values (?, ?)',
+                       [request.form['username'], request.form['password']])
+
+            db.commit()
+            flash('Successfully added user')
+
+            return redirect(url_for('login'))
+
+        else:
+            flash('Username taken')
+            error = 'invalid username'
+    else:
+        error = 'invalid data'
+
+    return redirect(url_for('signup', error=error))
+
+
+@app.route('/signup')
+def signup():
+    return render_template('register.html')
+
+
 @app.route('/')
 def index():
     return redirect(url_for('login'))
+
 
 @app.route('/login' , methods=['GET', 'POST'])
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['username'] != app.config['USERNAME']:
-            error = 'Invalid username'
-        elif request.form['password'] != app.config['PASSWORD']:
-            error = 'Invalid password'
+        db = get_db()
+        username = request.form['username']
+        password = request.form['password']
+        user = db.execute('SELECT username, password FROM users WHERE username LIKE \'%s\'' % username)
+
+        row = user.fetchall()
+        if (row is not None) & (len(row) != 0):
+            row = row[0]
+
+            uname = row[0]
+            pword = row[1]
+
+            print(uname)
+            print(pword)
+            #uname = ""
+            #pw = ""
+
+            #for usr in users:
+            #    uname = usr.username
+            #    pw = usr.password
+
+            if request.form['username'] != uname: #user[1:2]:
+                error = 'Invalid username'
+                #error = user
+            elif request.form['password'] != pword:
+                error = 'Invalid password'
+            else:
+                session['logged_in'] = True
+                flash('You were logged in')
+                # return redirect(url_for('show_entries'))
+
         else:
-            session['logged_in'] = True
-            flash('You were logged in')
-            # return redirect(url_for('show_entries'))
+            error = 'Invalid username'
     return render_template('login.html', error=error)
+
 
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
     return redirect(url_for('login'))
+
+
