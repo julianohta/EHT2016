@@ -2,51 +2,46 @@
 {% block head %}
     <title>System Login</title>
     <link type="text/css" rel="stylesheet"
-            href="{{ url_for('static', filename='css/index.css')}}" media="screen,projection"/>
+            href="{{ url_for('static', filename='css/login.css')}}" media="screen,projection"/>
 {% endblock %}
 {% block body %}
 
 {% if not session.logged_in %}
-<div class="row">
-    <div class="col s16 offset-s3 m6 offset-m3">
-        <div class="card-panel white">
-            <h5 class="card-title center-align unselectable">System Login</h5>
-            {% if error %}
-            <div class="chip unselectable">
-                <strong>Error:</strong> {{ error }}
-            </div>
-            {% endif %}
-            
-            {% for message in get_flashed_messages() %}
-            <div class="chip">
-                {{ message }}<i class="close material-icons">close</i>
-            </div>
-            {% endfor %}
-            <form action="{{ url_for('login') }}" id="login-form" method=post>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix unselectable">assignment_ind</i>
-                        <input name="username" id="username" type="text" class="validate">
-                        <label for="username">Username</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix unselectable">https</i>
-                        <input name="password" id="password" type="password" class="validate">
-                        <label for="password">Password</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12 center-align">
-                        <button class="btn waves-effect waves-light indigo darken-2" type="submit" name="action" value="Login">Submit
-                            <i class="material-icons right">send</i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-            <li><a href="{{ url_for('signup') }}">signup</a></li>
+<div class="row" style="margin-top: 10vh;">
+    <div class="col s10 l4 offset-l4">
+        <h3 class="unselectable">Suspect Human Trafficking?</h3>
+        <h5 class="unselectable">Enter your credentials to report a case</h5>
+        {% if error %}
+        <div class="chip unselectable">
+            <strong>Error:</strong> {{ error }}
         </div>
+        {% endif %}
+        
+        {% for message in get_flashed_messages() %}
+        <div class="chip">
+            {{ message }}<i class="close material-icons">close</i>
+        </div>
+        {% endfor %}
+        <form action="{{ url_for('login') }}" id="login-form" method=post>
+            <div class="row" style="padding-top: 10px;">
+                <div class="input-field col l12 s12">
+                    <input name="username" id="username" type="text" class="validate">
+                    <label for="username">Username</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col l12 s12">
+                    <input name="password" id="password" type="password" class="validate">
+                    <label for="password">Password</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col offset-l1 l10 s12 center-align">
+                    <button class="btn" type="submit" name="action" value="Login">Log in</button>
+                </div>
+            </div>
+        </form>
+        <!-- <li><a href="{{ url_for('signup') }}">signup</a></li> -->
     </div>
 </div>
 {% else %}

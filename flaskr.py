@@ -1,5 +1,6 @@
 # all the imports
 import os
+from parse_report import process
 import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
@@ -66,11 +67,12 @@ def initdb_command():
 # display table
 @app.route('/view')
 def show_entries():
+    if not session.get('logged_in'):
+        return render_template('login.html', error='Please login and try again')
     db = get_db()
     cur = db.execute('select title, text from entries order by id desc')
     entries = cur.fetchall()
     return render_template('view.html', entries=entries)
-
 
 # shows
 @app.route('/add', methods=['POST'])
@@ -85,6 +87,23 @@ def add_entry():
     flash('New entry was successfully posted')
     return redirect(url_for('show_entries'))
 
+@app.route('/report', methods=["POST","GET"])
+def report():
+    db = get_db()
+    if request.method == 'POST':
+        process(request, db)
+    # db = get_db()
+    # cur = db.execute('select title, text from entries order by id desc')
+    # entries = cur.fetchall()
+    #geoinfo = reportreq.getgeoinfo()
+    # if request.method == 'POST':
+    #     addr = request.form["address"]
+    #     print(addr)
+    #     return render_template('report.html', lat=reportreq.getLat(addr), lng=reportreq.getLng(addr))
+    # else:
+    return render_template('report.html')
+    #return render_template('report.html', lat=geoinfo["latitude"], lng=geoinfo["longitude"])
+    #addrInfo = reportreq.getAddrInfo(addr)
 
 @app.route('/register', methods=['GET', 'POST'])
 def add_user():

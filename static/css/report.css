@@ -1,0 +1,29 @@
+h3 {
+  color: #FBC324;
+  font-weight: 600; }
+
+div.btn {
+  color: #08213B;
+  background-color: #FBC324;
+  border-radius: 8px;
+  text-transform: none; }
+
+div.btn:hover {
+  background-color: #E1A605;
+  border-radius: 8px;
+  text-transform: none; }
+
+div.btn-blue {
+  color: #FAFAFA;
+  background-color: #3B6693;
+  border-radius: 8px;
+  text-transform: none; }
+
+div.btn-blue:hover {
+  background-color: #2C4B6D;
+  cursor: pointer; }
+
+fieldset {
+  border: none; }
+
+/*# sourceMappingURL=report.css.map */

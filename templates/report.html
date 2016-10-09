@@ -1,30 +1,97 @@
 {% extends "layout.html" %}
+{% block head %}
+    <title>System Login</title>
+    <link type="text/css" rel="stylesheet"
+            href="{{ url_for('static', filename='css/report.css')}}" media="screen,projection"/>
+{% endblock %}
 {% block body %}
-<h4>Report Viewer</h4>
 <!-- Loop through  -->
 <div class="row">
-    <form class="col s12">
+    <form id="report_frm" class="col s12 l12" action = "/report" method = "POST">
+        <fieldset id="page_one">
+        <h3 class="center-align unselectable">File a Report</h3>
+        <div class="row"><div class="input-field col offset-l2 l8 s12">
+            <input id="location" type="text" class="validate" name="location">
+            <label for="location">Event Location</label>
+            <!-- <button class="btn waves-effect waves-light" type="submit">Search Address
+                <i class="material-icons right">send</i>
+            </button> -->
+            <div id="map"></div>
+            {% if lat %}
+            <script>
+              var latlng = {lat: {{lat}}, lng: {{lng}}};
+              function initMap() {
+                var map = new google.maps.Map(document.getElementById('map'), {
+                  center: latlng,
+                  zoom: 15
+                });
+                var marker = new google.maps.Marker({
+                    position: latlng,
+                    map: map,
+                });
+            }
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2l1Dg7y6sUMl98CSDudcuC28VLLlXFTk&callback=initMap"
+                async defer></script>
+            {% endif %}
+        </div></div>
+        <div class="row"><div class="input-field col offset-l2 l4 s6">
+            <input type="text" class="validate" name="time">
+            <label for="time">24-hour Time</label>
+        </div><div class="input-field col l4 s6">
+            <input type="date" class="datepicker" name="date">
+            <label for="date">Date</label>
+        </div></div>
+        <div class="row"><div class="input-field col offset-l2 l8 s12">
+            <input type="text" class="validate" name="venue-name">
+            <label for="venue-name">Name of Venue</label>
+        </div></div>
+        <div class="row"><div class="input-field col offset-l2 l8 s12">
+            <input type="text" class="validate" name="venue-type">
+            <label for="venue-type">Type of Venue</label>
+        </div></div>
+        <div class="row"><div class="file-field input-field col offset-l2 l8 s12">
+            <div id="upload_btn" class="btn btn-blue">Upload
+                <input type="file" multiple>
+            </div><div class="file-path-wrapper">
+                <input class="file-path validate" type="text" placeholder="Attach related evidence">
+        </div></div>
+        </div>
+        <div class="row center-align"><div class="btn next">Next</div></div>
+        </fieldset>
+        <fieldset id="page_two">
+        <h3 class="center-align unselectable">Victims</h3>
+        <div id="victims">
+        </div>
+        <input id="victim_cnt" name="victim_cnt" type="hidden" value="1">
         <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">my_location</i>
-                <input id="event_location" type="text" class="validate">
-                <label for="event_location">Event Location</label>
+            <div class="add-victim btn btn-blue col offset-l2">Add Victim</div>
+        </div>
+        <div class="row center-align"><div class="btn back" style="margin-right: 5px;">Back</div>
+            <div class="btn next" style="margin-left: 5px;">Next</div></div>
+        </fieldset>
+        <fieldset id="page_two">
+        <h3 class="center-align unselectable">Suspected Persons</h3>
+        <div id="traffickers">
+        </div>
+        <input id="trafficker_cnt" name="trafficker_cnt" type="hidden" value="1">
+        <div class="row">
+            <div class="add-trafficker btn btn-blue col offset-l2">Add Suspected Trafficker</div>
+        </div>
+        <div class="row center-align"><div class="btn back">Back</div></div>
+        <div class="row">
+            <div class="input-field col s12 center-align">
+                <button class="btn waves-effect waves-light" type="submit" name="action" value="report">Submit
+                    <i class="material-icons right">send</i>
+                </button>
             </div>
         </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">chat_bubble_outline</i>
-                <textarea id="event_desc" class="materialize-textarea"></textarea>
-                <label for="event_desc">Event Description</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">contacts</i>
-                <input id="event_reporter" type="text" class="validate">
-                <label for="event_reporter">Event Reporter</label>
-            </div>
-        </div>
+        </fieldset>
     </form>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.multipage.js')}}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/report.js')}}"></script>
 {% endblock %}
