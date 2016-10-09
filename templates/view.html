@@ -7,19 +7,19 @@
 {% block body %}
   <div class="row">
     <div class="col s12 offset-l2 l8" id="chips">
-    <div class="chip active">Time</div>
-    <div class="chip">Location</div>
+    <div class="chip" data-id="time">Time</div>
+    <div class="chip active" data-id="location">Location</div>
   </div>
   </div>
   {% set counter = 0 %}
   {% for entry in entries: %}
-    <div class="row">
+    <div class="row info-cards" id="row{{ counter }}">
         <div class="col s12 offset-l2 l8">
           <div class="card">
             <div class="card-content white-text">
               <span class="card-title">{{ entry.location }}</span>
               <a class="btn-floating btn-blue right inspect"><i class="material-icons">zoom_in</i></a>
-              <p><i>{{ entry.time }}, {{ entry.date }}<br ></i>{{ entry.description }}</p>
+              <p><i><span class="time">{{ entry.time }}</span>, <span class="date">{{ entry.date }}</span><br ></i>{{ entry.description }}</p>
               {% for victim in victims[counter]: %}
                 <table class="responsive-table expand">
                   <thead>
@@ -29,34 +29,73 @@
                   </thead>
                   <tbody>
                     <tr>
-                      
-                        <td><span class="data-lbl">Name:</span>
+                        <td><span class="data-lbl">Name: </span>
                           {% if victim[0].name == "" %}
                             unknown
                           {% else %}
                             {{ victim[0].name }}
                           {% endif %}
                         </td>
-                      <td><span class="data-lbl">Aliases:</span> {{ victim[0].alias}}</td>
+                        <td><span class="data-lbl">Aliases: </span>
+                          {% if victim[0].alias == "" %}
+                            unknown
+                          {% else %}
+                            {{ victim[0].alias }}
+                          {% endif %}
+                        </td>
                     </tr>
                     <tr>
-                      <td><span class="data-lbl">Gender:</span> {{ victim[0].gender }}</td>
-                      <td><span class="data-lbl">Age:</span> {{ victim[0].age }}</td>
+                      <td><span class="data-lbl">Gender: </span>{{ victim[0].gender }}</td>
+                      <td><span class="data-lbl">Age: </span>
+                          {% if victim[0].age == "" %}
+                            unknown
+                          {% else %}
+                            {{ victim[0].age }}
+                          {% endif %}</td>
                     </tr>
                     <tr>
-                      <td><span class="data-lbl">Eyes:</span> {{ victim[0].eyes }}</td>
-                      <td><span class="data-lbl">Hair:</span> {{ victim[0].hair }}</td>
+                      <td><span class="data-lbl">Eyes: </span>{{ victim[0].eyes }}</td>
+                      <td><span class="data-lbl">Hair: </span>{{ victim[0].hair }}</td>
                     </tr>
                     <tr>
-                      <td><span class="data-lbl">Build:</span> {{ victim[0].build }}</td>
-                      <td><span class="data-lbl">Height:</span> {{ victim[0].height }}</td>
+                      <td><span class="data-lbl">Build: </span>
+                        {% if victim[0].build == "" %}
+                          unknown
+                        {% else %}
+                          {{ victim[0].build }}
+                        {% endif %}
+                      </td>
+                      <td><span class="data-lbl">Height: </span>
+                        {% if victim[0].height == -13 %}
+                          unknown
+                        {% else %}
+                          {{ victim[0].height }}
+                        {% endif %}
+                      </td>
                     </tr>
                     <tr>
-                      <td><span class="data-lbl">Body modifications:</span> {{ victim[0].mods }}</td>
-                      <td><span class="data-lbl">Clothing:</span> {{ victim[0].clothing }}</td>
+                      <td><span class="data-lbl">Body modifications: </span>
+                        {% if victim[0].mods == "" %}
+                          unknown
+                        {% else %}
+                          {{ victim[0].mods }}
+                        {% endif %}
+                      </td>
+                      <td><span class="data-lbl">Clothing: </span>
+                        {% if victim[0].clothing == "" %}
+                          unknown
+                        {% else %}
+                          {{ victim[0].clothing }}
+                        {% endif %}</td>
                     </tr>
                     <tr>
-                      <td><span class="data-lbl">Comments:</span> {{ victim[0].comments }}</td>
+                      <td><span class="data-lbl">Comments: </span>
+                        {% if victim[0].comments == "" %}
+                          none
+                        {% else %}
+                          {{ victim[0].comments }}
+                        {% endif %}
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -71,27 +110,74 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td><span class="data-lbl">Name:</span> {{ suspect[0].name }}</td>
-                      <td><span class="data-lbl">Aliases:</span> {{ suspect[0].alias}}</td>
+                      
+                        <td><span class="data-lbl">Name: </span>
+                          {% if suspect[0].name == "" %}
+                            unknown
+                          {% else %}
+                            {{ suspect[0].name }}
+                          {% endif %}
+                        </td>
+                        <td><span class="data-lbl">Aliases: </span>
+                          {% if suspect[0].alias == "" %}
+                            unknown
+                          {% else %}
+                            {{ suspect[0].alias }}
+                          {% endif %}
+                        </td>
                     </tr>
                     <tr>
-                      <td><span class="data-lbl">Gender:</span> {{ suspect[0].gender }}</td>
-                      <td><span class="data-lbl">Age:</span> {{ suspect[0].age }}</td>
+                      <td><span class="data-lbl">Gender: </span>{{ suspect[0].gender }}</td>
+                      <td><span class="data-lbl">Age: </span>
+                          {% if suspect[0].age == "" %}
+                            unknown
+                          {% else %}
+                            {{ suspect[0].age }}
+                          {% endif %}</td>
                     </tr>
                     <tr>
-                      <td><span class="data-lbl">Eyes:</span> {{ suspect[0].eyes }}</td>
-                      <td><span class="data-lbl">Hair:</span> {{ suspect[0].hair }}</td>
+                      <td><span class="data-lbl">Eyes: </span>{{ suspect[0].eyes }}</td>
+                      <td><span class="data-lbl">Hair: </span>{{ suspect[0].hair }}</td>
                     </tr>
                     <tr>
-                      <td><span class="data-lbl">Build:</span> {{ suspect[0].build }}</td>
-                      <td><span class="data-lbl">Height:</span> {{ suspect[0].height }}</td>
+                      <td><span class="data-lbl">Build: </span>
+                        {% if suspect[0].build == "" %}
+                          unknown
+                        {% else %}
+                          {{ suspect[0].build }}
+                        {% endif %}
+                      </td>
+                      <td><span class="data-lbl">Height: </span>
+                        {% if suspect[0].height == -13 %}
+                          unknown
+                        {% else %}
+                          {{ suspect[0].height }}
+                        {% endif %}
+                      </td>
                     </tr>
                     <tr>
-                      <td><span class="data-lbl">Body modifications:</span> {{ suspect[0].mods }}</td>
-                      <td><span class="data-lbl">Clothing:</span> {{ suspect[0].clothing }}</td>
+                      <td><span class="data-lbl">Body modifications: </span>
+                        {% if suspect[0].mods == "" %}
+                          unknown
+                        {% else %}
+                          {{ suspect[0].mods }}
+                        {% endif %}
+                      </td>
+                      <td><span class="data-lbl">Clothing: </span>
+                        {% if suspect[0].clothing == "" %}
+                          unknown
+                        {% else %}
+                          {{ suspect[0].clothing }}
+                        {% endif %}</td>
                     </tr>
                     <tr>
-                      <td><span class="data-lbl">Comments:</span> {{ suspect[0].comments }}</td>
+                      <td><span class="data-lbl">Comments: </span>
+                        {% if suspect[0].comments == "" %}
+                          none
+                        {% else %}
+                          {{ suspect[0].comments }}
+                        {% endif %}
+                      </td>
                     </tr>
                   </tbody>
                 </table>
