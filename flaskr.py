@@ -90,6 +90,7 @@ def add_entry():
 def add_user():
     error = None
     if request.method == 'POST':
+
         db = get_db()
 
         username = request.form['username']
@@ -97,15 +98,24 @@ def add_user():
         user = db.execute('SELECT username, password FROM users WHERE username LIKE \'%s\'' % username)
 
         row = user.fetchall()
+        #print(row)
 
         if (row is None) | (len(row) == 0):
-            db.execute('insert into users (username, password) values (?, ?)',
-                       [request.form['username'], request.form['password']])
+            if len(request.form['ssid']) == 0:
+                error = 'invalid account ssid'
 
-            db.commit()
-            flash('Successfully added user')
+            elif len(request.form['token']) == 0:
+                error = 'invalid authentication token'
 
-            return redirect(url_for('login'))
+            else:
+
+                db.execute('insert into users (username, password, account_ssid, auth_token) values (?, ?, ?, ?)',
+                           [request.form['username'], request.form['password'], request.form['ssid'], request.form['token']])
+
+                db.commit()
+                flash('Successfully added user')
+
+                return redirect(url_for('login'))
 
         else:
             flash('Username taken')
@@ -171,5 +181,3 @@ def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
     return redirect(url_for('login'))
-
-

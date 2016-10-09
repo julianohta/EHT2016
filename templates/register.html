@@ -38,13 +38,26 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix unselectable">https</i>
+                        <input name="ssid" id="account_ssid" type="password" class="validate">
+                        <label for="account_ssid">SSID</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix unselectable">https</i>
+                        <input name="token" id="auth_token" type="password" class="validate">
+                        <label for="auth_token">Token</label>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="input-field col s12 center-align">
-                        <button class="btn waves-effect waves-light indigo darken-2" type="submit" name="action" value="Login">Register
+                        <button class="btn waves-effect waves-light indigo darken-2" type="submit" name="action" value="Register">Register
                             <i class="material-icons right">send</i>
                         </button>
                     </div>
                 </div>
-
             </form>
             <li><a href="{{ url_for('login') }}">login</a></li>
         </div>
