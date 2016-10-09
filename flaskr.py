@@ -1,5 +1,6 @@
 # all the imports
 import os
+import unicodedata
 from parse_report import process
 import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
@@ -70,9 +71,30 @@ def show_entries():
     if not session.get('logged_in'):
         return render_template('login.html', error='Please login and try again')
     db = get_db()
+
     cur = db.execute('select location,description,time,date,venue_name,venue_type from reports order by id desc')
     entries = cur.fetchall()
-    return render_template('view.html', entries=entries)
+
+    victim_lst = []
+    suspect_lst = []
+    cur = db.execute('select victims,suspects from reports order by id desc')
+    persons = cur.fetchall()
+    for case in persons:
+        case_victims = []
+        for victim in str.split(str(case[0][:-1])):
+            victim_query = db.execute('select * from persons where id='+victim)
+            case_victims.append(victim_query.fetchall())
+
+        victim_lst.append(case_victims)
+
+        case_suspects = []
+        for suspect in str.split(str(case[1][:-1])):
+            suspect_query = db.execute('select * from persons where id='+suspect)
+            case_suspects.append(suspect_query.fetchall())
+
+        suspect_lst.append(case_suspects)
+
+    return render_template('view.html', entries=entries, victims=victim_lst, suspects=suspect_lst)
 
 # shows
 @app.route('/add', methods=['POST'])

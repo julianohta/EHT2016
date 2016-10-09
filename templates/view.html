@@ -9,19 +9,86 @@
     <div class="col s12 offset-l2 l8" id="chips">
     <div class="chip active">Time</div>
     <div class="chip">Location</div>
-    <div class="chip">Tag</div>
-    <div class="chip">Tag</div>
   </div>
   </div>
-  {% for entry in entries %}
+  {% set counter = 0 %}
+  {% for entry in entries: %}
     <div class="row">
         <div class="col s12 offset-l2 l8">
           <div class="card">
             <div class="card-content white-text">
               <span class="card-title">{{ entry.location }}</span>
               <a class="btn-floating btn-blue right inspect"><i class="material-icons">zoom_in</i></a>
-              <p><i>{{ entry.time }}, {{ entry.date }}<br ></i>{{ entry.description }}<br >
-              <!-- Display info victims and suspects, hidden at first, then display on zoom --></p>
+              <p><i>{{ entry.time }}, {{ entry.date }}<br ></i>{{ entry.description }}</p>
+              {% for victim in victims[counter]: %}
+                <table class="responsive-table expand">
+                  <thead>
+                    <tr>
+                      <th data-field="id">Victim</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="data-lbl">Name:</span> {{ victim[0].name }}</td>
+                      <td><span class="data-lbl">Aliases:</span> {{ victim[0].alias}}</td>
+                    </tr>
+                    <tr>
+                      <td><span class="data-lbl">Gender:</span> {{ victim[0].gender }}</td>
+                      <td><span class="data-lbl">Age:</span> {{ victim[0].age }}</td>
+                    </tr>
+                    <tr>
+                      <td><span class="data-lbl">Eyes:</span> {{ victim[0].eyes }}</td>
+                      <td><span class="data-lbl">Hair:</span> {{ victim[0].hair }}</td>
+                    </tr>
+                    <tr>
+                      <td><span class="data-lbl">Build:</span> {{ victim[0].build }}</td>
+                      <td><span class="data-lbl">Height:</span> {{ victim[0].height }}</td>
+                    </tr>
+                    <tr>
+                      <td><span class="data-lbl">Body modifications:</span> {{ victim[0].mods }}</td>
+                      <td><span class="data-lbl">Clothing:</span> {{ victim[0].clothing }}</td>
+                    </tr>
+                    <tr>
+                      <td><span class="data-lbl">Comments:</span> {{ victim[0].comments }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              {% endfor %}
+
+              {% for suspect in suspects[counter]: %}
+                <table class="responsive-table expand">
+                  <thead>
+                    <tr>
+                      <th data-field="id">Suspect</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="data-lbl">Name:</span> {{ suspect[0].name }}</td>
+                      <td><span class="data-lbl">Aliases:</span> {{ suspect[0].alias}}</td>
+                    </tr>
+                    <tr>
+                      <td><span class="data-lbl">Gender:</span> {{ suspect[0].gender }}</td>
+                      <td><span class="data-lbl">Age:</span> {{ suspect[0].age }}</td>
+                    </tr>
+                    <tr>
+                      <td><span class="data-lbl">Eyes:</span> {{ suspect[0].eyes }}</td>
+                      <td><span class="data-lbl">Hair:</span> {{ suspect[0].hair }}</td>
+                    </tr>
+                    <tr>
+                      <td><span class="data-lbl">Build:</span> {{ suspect[0].build }}</td>
+                      <td><span class="data-lbl">Height:</span> {{ suspect[0].height }}</td>
+                    </tr>
+                    <tr>
+                      <td><span class="data-lbl">Body modifications:</span> {{ suspect[0].mods }}</td>
+                      <td><span class="data-lbl">Clothing:</span> {{ suspect[0].clothing }}</td>
+                    </tr>
+                    <tr>
+                      <td><span class="data-lbl">Comments:</span> {{ suspect[0].comments }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              {% endfor %}
             </div>
             <div class="card-action">
               <span><strong>Num. Victims: </strong>5</span>
@@ -37,6 +104,7 @@
       </div>
    <!--  <li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}
     <li><em>Unbelievable.  No entries here so far</em> -->
+  {% set counter = counter + 1 %}
   {% endfor %}
 {% endblock %}
 

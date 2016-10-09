@@ -30,6 +30,13 @@ $dk_blue: #2C4B6D;
 .btn-blue:hover {
 	background-color: $md_blue !important;
 }
+.data-lbl {
+	color: $blue;
+}
+.expand {
+	display: none;
+	width: 100%;
+}
 
 #chips {
 	margin-top: 15px;

@@ -20,6 +20,13 @@
 .btn-blue:hover {
   background-color: #389AE0 !important; }
 
+.data-lbl {
+  color: #5EAEE6; }
+
+.expand {
+  display: none;
+  width: 100%; }
+
 #chips {
   margin-top: 15px;
   -moz-user-select: -moz-none;
