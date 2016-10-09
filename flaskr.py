@@ -70,7 +70,7 @@ def show_entries():
     if not session.get('logged_in'):
         return render_template('login.html', error='Please login and try again')
     db = get_db()
-    cur = db.execute('select title, text from entries order by id desc')
+    cur = db.execute('select location,description,time,date,venue_name,venue_type from reports order by id desc')
     entries = cur.fetchall()
     return render_template('view.html', entries=entries)
 

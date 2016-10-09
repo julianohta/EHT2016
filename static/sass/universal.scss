@@ -5,6 +5,7 @@ $dkr_grey: #BBBBBB;
 $yellow: #FBC324;
 $dk_yellow: #E1A605;
 $blue: #5EAEE6;
+$dk_blue: #389ae0;
 
 body {
 	background: $back;
@@ -19,6 +20,13 @@ body {
     -o-user-select: none;
     user-select: none;
     cursor: default;
+}
+
+a#logout {
+	background-color: $blue;
+}
+a#logout:hover {
+	background-color: $dk_blue;
 }
 
 nav {

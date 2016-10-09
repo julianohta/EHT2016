@@ -10,6 +10,12 @@ body {
   user-select: none;
   cursor: default; }
 
+a#logout {
+  background-color: #5EAEE6; }
+
+a#logout:hover {
+  background-color: #389ae0; }
+
 nav {
   background-color: #FBC324;
   box-shadow: none;

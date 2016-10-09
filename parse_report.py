@@ -1,6 +1,7 @@
 from flask import redirect, url_for, flash
 
 def process(request, db):
+    desc = request.form['description']
     location = request.form['location']
     time = request.form['time']
     date = request.form['date']
@@ -63,9 +64,9 @@ def process(request, db):
             traffickers += str(nextid.lastrowid) + ","
         counter += 1
 
-    db.execute('insert into reports (location, time, date, venue_name,' +
-                'venue_type, media, victims, suspects) values (?, ?, ?, ?, ?, ?, ?, ?)',
-                [location, time, date, venue_name, venue_type, "", victims, traffickers])
+    db.execute('insert into reports (description, location, time, date, venue_name,' +
+                'venue_type, media, victims, suspects) values (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                [desc, location, time, date, venue_name, venue_type, "", victims, traffickers])
 
     db.commit()
 

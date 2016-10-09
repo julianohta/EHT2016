@@ -1,0 +1,55 @@
+$back: #08213B;
+$lt_grey: #FAFAFA;
+$dk_grey: #DDDDDD;
+$dkr_grey: #BBBBBB;
+$yellow: #FBC324;
+$dk_yellow: #E1A605;
+$blue: #5EAEE6;
+$md_blue: #389AE0;
+$dk_blue: #2C4B6D;
+
+.card {
+	background-color: $dk_blue;
+	color: $lt_grey;
+}
+.card-action span {
+	display: inline-block;
+	margin-left: 0px;
+	margin-right: 20px;
+}
+.card a {
+	color: $yellow !important;
+	transition: color .2s;
+}
+.card a:hover {
+	color: $dk_yellow !important;
+}
+.btn-blue {
+	background-color: $blue !important;
+}
+.btn-blue:hover {
+	background-color: $md_blue !important;
+}
+
+#chips {
+	margin-top: 15px;
+	-moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+#chips .chip {
+	background-color: $lt_grey;
+	transition: background-color .2s;
+}
+#chips .chip:hover {
+	background-color: $dk_grey;
+	cursor: pointer;
+}
+#chips .active {
+	background-color: $yellow;
+}
+#chips .active:hover {
+	background-color: $dk_yellow;
+}

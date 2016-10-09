@@ -18,14 +18,13 @@
     <body>
 
     <nav>
-        <div class="nav-wrapper">
-            <!-- <a href="#" class="brand-logo">Human Trafficking Monitor</a>
+        <!-- <div class="nav-wrapper">
             {% if session.logged_in %}
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            <ul class="right">
+                <li><a href="{{ url_for('logout') }}" id="logout"><i class="tiny material-icons">exit_to_app</i></a></li>
             </ul>
-            {% endif %} -->
-        </div>
+            {% endif %}
+        </div> -->
     </nav>
 
    <!--  {% for message in get_flashed_messages() %}
@@ -33,6 +32,14 @@
     {% endfor %} -->
 
     {% block body %}{% endblock %}
+
+    {% if session.logged_in %}
+    <div class="fixed-action-btn horizontal hide-on-med-and-down" style="position: absolute; top: 48px; right: 24px;">
+    <a class="btn-floating btn-large" id="logout" href="{{ url_for('logout') }}">
+      <i class="material-icons" style="color: #FAFAFA;">exit_to_app</i>
+    </a>
+  </div>
+  {% endif %}
 
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

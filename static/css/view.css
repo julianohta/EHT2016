@@ -1,0 +1,45 @@
+.card {
+  background-color: #2C4B6D;
+  color: #FAFAFA; }
+
+.card-action span {
+  display: inline-block;
+  margin-left: 0px;
+  margin-right: 20px; }
+
+.card a {
+  color: #FBC324 !important;
+  transition: color .2s; }
+
+.card a:hover {
+  color: #E1A605 !important; }
+
+.btn-blue {
+  background-color: #5EAEE6 !important; }
+
+.btn-blue:hover {
+  background-color: #389AE0 !important; }
+
+#chips {
+  margin-top: 15px;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  user-select: none; }
+
+#chips .chip {
+  background-color: #FAFAFA;
+  transition: background-color .2s; }
+
+#chips .chip:hover {
+  background-color: #DDDDDD;
+  cursor: pointer; }
+
+#chips .active {
+  background-color: #FBC324; }
+
+#chips .active:hover {
+  background-color: #E1A605; }
+
+/*# sourceMappingURL=view.css.map */

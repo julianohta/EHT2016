@@ -1,6 +1,6 @@
 drop table if exists users;
 drop table if exists reports;
-drop table if exists reports;
+drop table if exists persons;
 create table users (
   id integer primary key autoincrement,
   username text unique not null,
@@ -10,6 +10,7 @@ create table users (
 );
 create table reports (
 	id integer primary key autoincrement,
+	description text not null,
 	location text not null,
 	time text,
 	date text not null,

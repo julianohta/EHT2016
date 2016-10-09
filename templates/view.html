@@ -1,22 +1,45 @@
-{% if session.logged_in %}
 {% extends "layout.html" %}
-{% block body %}
-    <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
-      <dl>
-        <dt>Where:
-        <dd><textarea name=text rows=5 cols=40></textarea>
-        <dt>What:
-        <dd><textarea name=text rows=5 cols=40></textarea>
-        <dt>Who:
-        <dd><textarea name=text rows=5 cols=40></textarea>
-        <dd><input type=submit value=Share>
-      </dl>
-    </form>
-  <ul class=entries>
-  {% for entry in entries %}
-    <li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}
-    <li><em>Unbelievable.  No entries here so far</em>
-  {% endfor %}
-  </ul>
+{% block head %}
+    <title>View Reports</title>
+    <link type="text/css" rel="stylesheet"
+            href="{{ url_for('static', filename='css/view.css')}}" media="screen,projection"/>
 {% endblock %}
-{% endif %}
+{% block body %}
+  <div class="row">
+    <div class="col s12 offset-l2 l8" id="chips">
+    <div class="chip active">Time</div>
+    <div class="chip">Location</div>
+    <div class="chip">Tag</div>
+    <div class="chip">Tag</div>
+  </div>
+  </div>
+  {% for entry in entries %}
+    <div class="row">
+        <div class="col s12 offset-l2 l8">
+          <div class="card">
+            <div class="card-content white-text">
+              <span class="card-title">{{ entry.location }}</span>
+              <a class="btn-floating btn-blue right inspect"><i class="material-icons">zoom_in</i></a>
+              <p><i>{{ entry.time }}, {{ entry.date }}<br ></i>{{ entry.description }}<br >
+              <!-- Display info victims and suspects, hidden at first, then display on zoom --></p>
+            </div>
+            <div class="card-action">
+              <span><strong>Num. Victims: </strong>5</span>
+              <span><strong>Num. Suspects: </strong>2</span>
+              <span><strong>Venue name: </strong>{{ entry.venue_name }}</span>
+              <span><strong>Venue type: </strong>{{ entry.venue_type }}</span>
+            </div>
+            <div class="card-action">
+              <a href="#">File 1</a><a href="#">File 2</a><a href="#">File 3</a>
+            </div>
+          </div>
+        </div>
+      </div>
+   <!--  <li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}
+    <li><em>Unbelievable.  No entries here so far</em> -->
+  {% endfor %}
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/view.js')}}"></script>
+{% endblock %}
