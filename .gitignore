@@ -1,5 +1,22 @@
+<<<<<<< HEAD
 .idea
 testenv
 venv
+=======
+.DS_Store
+*.pyc
+*.pyo
+env
+env*
+dist
+build
+*.egg
+*.egg-info
+_mailinglist
+.tox
+.env
+chatenv
+.idea
+>>>>>>> temp2
 vn
 static/.sass-cache

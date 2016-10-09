@@ -1,3 +1,4 @@
+
 body {
   background: #08213B;
   font-family: 'Avenir Next'; }
@@ -8,6 +9,7 @@ body {
   -webkit-user-select: none;
   -o-user-select: none;
   user-select: none;
+
   cursor: default; }
 
 a#logout {
