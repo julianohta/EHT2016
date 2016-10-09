@@ -4,6 +4,7 @@ from faker import Factory
 from twilio.access_token import AccessToken, IpMessagingGrant
 
 from flask import Blueprint
+import sqlite3
 
 sms_app = Blueprint('sms_app', __name__,
                     template_folder='templates', static_folder='static')

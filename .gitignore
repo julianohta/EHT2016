@@ -12,3 +12,5 @@ _mailinglist
 .env
 chatenv
 .idea
+vn
+static/.sass-cache

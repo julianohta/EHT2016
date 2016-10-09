@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% block head %}
+    <title>System Login</title>
+    <link type="text/css" rel="stylesheet"
+            href="{{ url_for('static', filename='css/index.css')}}" media="screen,projection"/>
+{% endblock %}
+{% block body %}
+
+{% if not session.logged_in %}
+<div class="row">
+    <div class="col s16 offset-s3 m6 offset-m3">
+        <div class="card-panel white">
+            <h5 class="card-title center-align unselectable">Sign up</h5>
+            {% if error %}
+            <div class="chip unselectable">
+                <strong>Error:</strong> {{ error }}
+            </div>
+            {% endif %}
+
+            {% for message in get_flashed_messages() %}
+            <div class="chip">
+                {{ message }}<i class="close material-icons">close</i>
+            </div>
+            {% endfor %}
+            <form action="{{ url_for('add_user') }}" id="login-form" method=post>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix unselectable">assignment_ind</i>
+                        <input name="username" id="username" type="text" class="validate">
+                        <label for="username">Username</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix unselectable">https</i>
+                        <input name="password" id="password" type="password" class="validate">
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix unselectable">https</i>
+                        <input name="ssid" id="account_ssid" type="password" class="validate">
+                        <label for="account_ssid">SSID</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix unselectable">https</i>
+                        <input name="token" id="auth_token" type="password" class="validate">
+                        <label for="auth_token">Token</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 center-align">
+                        <button class="btn waves-effect waves-light indigo darken-2" type="submit" name="action" value="Register">Register
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <li><a href="{{ url_for('login') }}">login</a></li>
+        </div>
+    </div>
+</div>
+{% else %}
+    Select what is next
+{% endif %}
+
+{% endblock %}
