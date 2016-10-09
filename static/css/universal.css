@@ -1,10 +1,75 @@
+body {
+  background: #08213B;
+  font-family: 'Avenir Next'; }
+
 .unselectable {
   -moz-user-select: -moz-none;
   -khtml-user-select: none;
   -webkit-user-select: none;
   -o-user-select: none;
   user-select: none;
-  cursor: default;
-}
+  cursor: default; }
+
+nav {
+  background-color: #FBC324;
+  box-shadow: none;
+  height: 25px; }
+
+button.btn {
+  color: #08213B;
+  border-radius: 10px;
+  background-color: #FBC324;
+  font-size: 20px;
+  padding: 10px 45px 45px 45px;
+  text-transform: none; }
+
+button.btn:hover {
+  background-color: #E1A605; }
+
+/* icon prefix focus color */
+.input-field .prefix {
+  color: #BBBBBB; }
+
+.input-field .prefix.active {
+  color: #FAFAFA; }
+
+.input-field input[type=text] {
+  color: #DDDDDD; }
+
+.input-field input[type=password] {
+  color: #DDDDDD; }
+
+.input-field input[type=text]:focus + label {
+  color: #FAFAFA; }
+
+.input-field input[type=password]:focus + label {
+  color: #FAFAFA; }
+
+/* label underline focus color */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #FBC324;
+  box-shadow: 0 1px 0 0 #FBC324; }
+
+.input-field input[type=password]:focus {
+  border-bottom: 1px solid #FBC324;
+  box-shadow: 0 1px 0 0 #FBC324; }
+
+/* valid color */
+.input-field input[type=text].valid {
+  border-bottom: 1px solid #DDDDDD;
+  box-shadow: 0 1px 0 0 #DDDDDD; }
+
+.input-field input[type=password].valid {
+  border-bottom: 1px solid #DDDDDD;
+  box-shadow: 0 1px 0 0 #DDDDDD; }
+
+/* valid color */
+.input-field input[type=text].valid:focus {
+  border-bottom: 1px solid #FBC324;
+  box-shadow: 0 1px 0 0 #FBC324; }
+
+.input-field input[type=password].valid:focus {
+  border-bottom: 1px solid #FBC324;
+  box-shadow: 0 1px 0 0 #FBC324; }
 
 /*# sourceMappingURL=universal.css.map */

@@ -1,0 +1,39 @@
+$back: #08213B;
+$lt_grey: #FAFAFA;
+$dk_grey: #DDDDDD;
+$dkr_grey: #BBBBBB;
+$yellow: #FBC324;
+$dk_yellow: #E1A605;
+$blue: #3B6693;
+$dk_blue: #2C4B6D;
+
+h3 {
+	color: $yellow;
+	font-weight: 600;
+}
+
+div.btn {
+	color: $back;
+	background-color: $yellow;
+	border-radius: 8px;
+	text-transform: none;
+}
+div.btn:hover {
+	background-color: $dk_yellow;
+	border-radius: 8px;
+	text-transform: none;
+}
+div.btn-blue {
+	color: $lt_grey;
+	background-color: $blue;
+	border-radius: 8px;
+	text-transform: none;
+}
+div.btn-blue:hover {
+	background-color: $dk_blue;
+	cursor: pointer;
+}
+
+fieldset {
+	border: none;
+}

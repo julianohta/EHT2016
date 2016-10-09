@@ -1,3 +1,16 @@
+$back: #08213B;
+$lt_grey: #FAFAFA;
+$dk_grey: #DDDDDD;
+$dkr_grey: #BBBBBB;
+$yellow: #FBC324;
+$dk_yellow: #E1A605;
+$blue: #5EAEE6;
+
+body {
+	background: $back;
+	font-family: 'Avenir Next';
+}
+
 // Courtesy of: http://stackoverflow.com/questions/924916/is-there-a-way-to-make-a-div-unselectable
 .unselectable {
     -moz-user-select: -moz-none;
@@ -5,4 +18,69 @@
     -webkit-user-select: none;
     -o-user-select: none;
     user-select: none;
+    cursor: default;
+}
+
+nav {
+	background-color: #FBC324;
+	box-shadow: none;
+	height: 25px;
+}
+
+button.btn {
+	color: $back;
+	border-radius: 10px;
+	background-color: $yellow;
+	font-size: 20px;
+	padding: 10px 45px 45px 45px;
+	text-transform: none;
+}
+button.btn:hover {
+	background-color: $dk_yellow;
+}
+/* icon prefix focus color */
+.input-field .prefix {
+ color: $dkr_grey;
+}
+.input-field .prefix.active {
+ color: $lt_grey;
+}
+.input-field input[type=text] {
+    color: $dk_grey;
+}
+.input-field input[type=password] {
+    color: $dk_grey;
+}
+.input-field input[type=text]:focus + label {
+    color: $lt_grey;
+}
+.input-field input[type=password]:focus + label {
+    color: $lt_grey;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid $yellow;
+    box-shadow: 0 1px 0 0 $yellow;
+}
+.input-field input[type=password]:focus {
+    border-bottom: 1px solid $yellow;
+    box-shadow: 0 1px 0 0 $yellow;
+}
+/* valid color */
+.input-field input[type=text].valid {
+    border-bottom: 1px solid $dk_grey;
+    box-shadow: 0 1px 0 0 $dk_grey;
+}
+.input-field input[type=password].valid {
+    border-bottom: 1px solid $dk_grey;
+    box-shadow: 0 1px 0 0 $dk_grey;
+}
+/* valid color */
+.input-field input[type=text].valid:focus {
+    border-bottom: 1px solid $yellow;
+    box-shadow: 0 1px 0 0 $yellow;
+}
+.input-field input[type=password].valid:focus {
+    border-bottom: 1px solid $yellow;
+    box-shadow: 0 1px 0 0 $yellow;
 }
