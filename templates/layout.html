@@ -18,19 +18,25 @@
     </head>
     <body>
 
-    <nav>
-        <!-- <div class="nav-wrapper">
-            {% if session.logged_in %}
-            <ul class="right">
-                <li><a href="{{ url_for('logout') }}" id="logout"><i class="tiny material-icons">exit_to_app</i></a></li>
-            </ul>
-            {% endif %}
-        </div> -->
-    </nav>
+        <nav>
+            <div class="nav-wrapper">
+                {% if session.logged_in %}
+                <ul class="right">
+                    <li><a href="{{ url_for('show_entries') }}">View Reports</a></li>
+                    <li><a href="{{ url_for('report') }}">Report Incident</a></li>
+                </ul>
+                {% endif %}
+            </div>
+
+
+        </nav>
+
 
    <!--  {% for message in get_flashed_messages() %}
         <div class=flash>{{ message }}</div>
     {% endfor %} -->
+
+    <ul height="50px"><li href=" url_for('email') "></li><li href=" url_for('text') "></li><li href=" url_for('chat') "></li></ul>
 
     {% block body %}{% endblock %}
 

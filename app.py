@@ -3,7 +3,6 @@ from flask import Flask, session, g, redirect, url_for, abort, \
      render_template, flash
 import os
 from flask import jsonify, request
-from faker import Factory
 from twilio.access_token import AccessToken, IpMessagingGrant
 from flask_mail import Message, Mail
 from twilio.rest import TwilioRestClient
@@ -18,7 +17,6 @@ app.config.from_object(__name__)
 app.config.update(
     DEBUG=True,
 )
-
 
 
 # Load default config and override config from an environment variable
@@ -36,11 +34,7 @@ app.config.update(dict(
 ))
 app.config.from_envvar('APP_SETTINGS', silent=True)
 
-
 mail = Mail(app)
-
-
-fake = Factory.create()
 
 
 #db functions
@@ -88,19 +82,35 @@ def index():
     return app.send_static_file('index.html')
 
 
-@app.route('/text')
+@app.route('/send_text', methods=['POST'])
 def send_text():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
     else:
         sid = session.get('sid')
         tkn = session.get('token')
-        print(sid)
-        print(tkn)
-        print("++++++++++++++++++++++++++++++")
         client = TwilioRestClient(account=sid, token=tkn)
-        message = client.messages.create(to="+16073398907", from_="+16073912565", body="from a monkey with a typewriter")
+        client.messages.create(to="+16073398907", from_="+16073912565", body=request.form['body'])
         return redirect(url_for('login'))
+    #16073398907
+    #18012449440
+
+
+@app.route('/text')
+def text():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+    else:
+        return render_template('text.html')
+
+
+@app.route('/email')
+def email():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+    else:
+        return render_template('email.html')
+
 
 @app.route('/token')
 def token():
@@ -137,9 +147,9 @@ def token():
 
 
 # messaging
-@app.route('/mail')
+@app.route('/mail', methods=['POST'])
 def send_mail():
-    msg = Message('yo', sender="demomododo@gmail.com")
+    msg = Message(subject=request.form['title'], body=request.form['body'], sender="demomododo@gmail.com")
     msg.add_recipient("demomododo@gmail.com")
     mail.send(msg)
 
@@ -176,20 +186,6 @@ def show_entries():
         suspect_lst.append(case_suspects)
 
     return render_template('view.html', entries=entries, victims=victim_lst, suspects=suspect_lst)
-
-
-# shows
-@app.route('/add', methods=['POST'])
-def add_entry():
-    if not session.get('logged_in'):
-        abort(401)
-    db = get_db()
-
-    db.execute('insert into entries (title, text) values (?, ?)',
-                 [request.form['title'], request.form['text']])
-    db.commit()
-    flash('New entry was successfully posted')
-    return redirect(url_for('show_entries'))
 
 
 #please don't hack :]
