@@ -22,6 +22,8 @@
             <div class="nav-wrapper">
                 {% if session.logged_in %}
                 <ul class="right">
+                    <li><a href="{{ url_for('index') }}">Case Chat</a></li>
+                    <li><a href="{{ url_for('email') }}">Dispatch Messages</a></li>
                     <li><a href="{{ url_for('show_entries') }}">View Reports</a></li>
                     <li><a href="{{ url_for('report') }}">Report Incident</a></li>
                 </ul>
@@ -41,7 +43,7 @@
     {% block body %}{% endblock %}
 
     {% if session.logged_in %}
-    <div class="fixed-action-btn horizontal hide-on-med-and-down" style="position: absolute; top: 48px; right: 24px;">
+    <div class="fixed-action-btn horizontal hide-on-med-and-down" style="position: absolute; top: 74px; right: 24px;">
     <a class="btn-floating btn-large" id="logout" href="{{ url_for('logout') }}">
       <i class="material-icons" style="color: #FAFAFA;">exit_to_app</i>
     </a>

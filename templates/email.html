@@ -1,26 +1,22 @@
 {% extends "layout.html" %}
 {% block head %}
-    <link type="text/css" rel="stylesheet"
-            href="{{ url_for('static', filename='css/login.css')}}" media="screen,projection"/>
 {% endblock %}
 {% block body %}
   {% if session.logged_in %}
 
     <form action="{{ url_for('send_mail') }}" method=post class=add-entry>
-      <dl>
-        <dt>Title:
-        <dd><input class="input-field col s12 center-align" type=text size=30 name=title>
-        <dt>Text:
-        <dd><textarea class="input-field col s12 center-align" name=body rows=5 cols=40></textarea>
-        <dd><input type=submit value=Share>
-      </dl>
+        <div class="row">
+          <div class="input_field col offset-l2 l8 s12">
+        <input class="validate" type=text size=30 name=title>
+        <label for="title">Title</label></div></div>
+        <div class="row">
+          <div class="input-field col offset-l2 l8 s12">
+        <textarea name=body rows=5 cols=40></textarea>
+            <label for="body">Body</label></div></div>
+      <div class="row">
+        <div class="col offset-l2 l8 s12">
+        <input type=submit value=Share></div></div>
+
     </form>
   {% endif %}
-  <ul class=entries>
-  {% for entry in entries %}
-    <li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}
-  {% else %}
-    <li><em>Unbelievable.  No entries here so far</em>
-  {% endfor %}
-  </ul>
 {% endblock %}

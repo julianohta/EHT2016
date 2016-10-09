@@ -2,6 +2,7 @@
 from flask import Flask, session, g, redirect, url_for, abort, \
      render_template, flash
 import os
+from parse_report import process
 from flask import jsonify, request
 from twilio.access_token import AccessToken, IpMessagingGrant
 from flask_mail import Message, Mail
@@ -187,6 +188,21 @@ def show_entries():
 
     return render_template('view.html', entries=entries, victims=victim_lst, suspects=suspect_lst)
 
+@app.route('/report', methods=["POST","GET"])
+def report():
+    db = get_db()
+    if request.method == 'POST':
+        process(request, db)
+    # db = get_db()
+    # cur = db.execute('select title, text from entries order by id desc')
+    # entries = cur.fetchall()
+    #geoinfo = reportreq.getgeoinfo()
+    # if request.method == 'POST':
+    #     addr = request.form["address"]
+    #     print(addr)
+    #     return render_template('report.html', lat=reportreq.getLat(addr), lng=reportreq.getLng(addr))
+    # else:
+    return render_template('report.html')
 
 #please don't hack :]
 @app.route('/register', methods=['GET', 'POST'])
