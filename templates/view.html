@@ -29,7 +29,14 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td><span class="data-lbl">Name:</span> {{ victim[0].name }}</td>
+                      
+                        <td><span class="data-lbl">Name:</span>
+                          {% if victim[0].name == "" %}
+                            unknown
+                          {% else %}
+                            {{ victim[0].name }}
+                          {% endif %}
+                        </td>
                       <td><span class="data-lbl">Aliases:</span> {{ victim[0].alias}}</td>
                     </tr>
                     <tr>
